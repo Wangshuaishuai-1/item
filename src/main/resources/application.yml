@@ -1,0 +1,20 @@
+server:
+  port: 8081
+spring:
+  application:
+    name:
+  rabbitmq:
+    host:
+    port:
+    username:
+    password:
+  datasource:
+    url: jdbc:mysql://localhost:3306
+    username: root
+    password: wang072672
+    driver-class-name: com.mysql.jdbc.Drive
+eureka:
+  client:
+    service-url:
+ruigu:
+  passss: ffd

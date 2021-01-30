@@ -1,0 +1,8 @@
+{
+  "properties": [
+    {
+      "name": "ruigu.pass",
+      "type": "java.lang.String",
+      "description": "Description for ruigu.pass."
+  }
+] }
