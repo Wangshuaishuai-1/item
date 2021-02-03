@@ -1,4 +1,4 @@
-package com.test.netty.config.client;
+package com.test.netty.config.one.client;
 
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;

@@ -1,4 +1,4 @@
-package com.test.netty.config.server;
+package com.test.netty.config.one.server;
 
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;

@@ -1,10 +1,8 @@
 package com.test.netty;
 
-import com.test.netty.config.server.NettyServer;
+import com.test.netty.config.one.server.NettyServer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.net.UnknownHostException;
 
 /**
  * @ Author     ：wangshuaishuai
