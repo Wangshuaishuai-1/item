@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: snap-nephalem-shuang
+server:
+  port: 8088
+
+logging:
+  level:
+    com:
+      haoait:
+        client:
+          UserServiceClient: debug

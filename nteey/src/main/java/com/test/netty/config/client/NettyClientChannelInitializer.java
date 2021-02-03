@@ -1,8 +1,10 @@
 package com.test.netty.config.client;
 
-import com.test.netty.config.server.NettyServerHandler;
 import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelPipeline;
 import io.netty.channel.socket.SocketChannel;
+import io.netty.handler.codec.LengthFieldBasedFrameDecoder;
+import io.netty.handler.codec.LengthFieldPrepender;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
 import io.netty.util.CharsetUtil;
@@ -17,11 +19,12 @@ import io.netty.util.CharsetUtil;
 public class NettyClientChannelInitializer extends ChannelInitializer<SocketChannel> {
 
     @Override
-    protected void initChannel(SocketChannel channel) throws Exception {
-
-        channel.pipeline().addLast("decoder",new StringDecoder(CharsetUtil.UTF_8));
-        channel.pipeline().addLast("encoder",new StringEncoder(CharsetUtil.UTF_8));
-
-        channel.pipeline().addLast(new NettyServerHandler());
+    protected void initChannel(SocketChannel socketChannel) throws Exception {
+        ChannelPipeline pipeline = socketChannel.pipeline();
+        pipeline.addLast(new LengthFieldBasedFrameDecoder(Integer.MAX_VALUE,0,4,0,4));
+        pipeline.addLast(new LengthFieldPrepender(4));
+        pipeline.addLast(new StringDecoder(CharsetUtil.UTF_8));
+        pipeline.addLast(new StringEncoder(CharsetUtil.UTF_8));
+        pipeline.addLast(new NettyClientHandler());
     }
 }

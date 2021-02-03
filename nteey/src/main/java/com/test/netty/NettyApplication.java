@@ -13,15 +13,8 @@ import java.net.UnknownHostException;
  */
 @SpringBootApplication
 public class NettyApplication {
-
-
     public static void main(String[] args) {
         SpringApplication.run(NettyApplication.class, args);
         NettyServer nettyServer=new NettyServer();
-        try {
-            nettyServer.start();
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
     }
 }
