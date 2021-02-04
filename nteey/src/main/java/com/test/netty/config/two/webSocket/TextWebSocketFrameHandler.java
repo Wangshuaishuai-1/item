@@ -1,6 +1,8 @@
 package com.test.netty.config.two.webSocket;
 
+import com.test.netty.config.two.test.ChannelSupervise;
 import io.netty.channel.ChannelHandler;
+import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.websocketx.TextWebSocketFrame;
@@ -11,9 +13,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 
-@Component
-@ChannelHandler.Sharable
-public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
+public class TextWebSocketFrameHandler extends ChannelHandlerAdapter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(TextWebSocketFrameHandler.class);
 
@@ -44,10 +44,5 @@ public class TextWebSocketFrameHandler extends SimpleChannelInboundHandler<TextW
     public void channelInactive(ChannelHandlerContext ctx) throws Exception { // (6)
         ChannelSupervise.removeChannel(ctx.channel());
         LOGGER.info("[%s]断开连接", ctx.channel().id().asShortText());
-    }
-
-    @Override
-    protected void messageReceived(ChannelHandlerContext channelHandlerContext, TextWebSocketFrame textWebSocketFrame) throws Exception {
-
     }
 }

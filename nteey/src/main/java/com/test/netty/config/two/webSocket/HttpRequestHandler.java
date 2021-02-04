@@ -1,21 +1,22 @@
 package com.test.netty.config.two.webSocket;
 
+import com.test.netty.config.two.test.ChannelSupervise;
+import com.test.netty.util.UriUtil;
 import io.netty.channel.ChannelHandler;
+import io.netty.channel.ChannelHandlerAdapter;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.handler.codec.http.FullHttpRequest;
-import lombok.Value;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-@Component
-@ChannelHandler.Sharable
-public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequest> {
+public class HttpRequestHandler extends ChannelHandlerAdapter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HttpRequestHandler.class);
 
-    @Value("${server.socket-uri}")
+    @Value(value = "${netty.server-socket.url}")
     private String socketUri;
 
     @Override
@@ -36,9 +37,5 @@ public class HttpRequestHandler extends SimpleChannelInboundHandler<FullHttpRequ
         }
     }
 
-    @Override
-    protected void messageReceived(ChannelHandlerContext channelHandlerContext, FullHttpRequest fullHttpRequest) throws Exception {
-
-    }
 
 }

@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "snap.nephalem.client-id",
+      "type": "java.lang.String",
+      "description": "Description for snap.nephalem.client-id."
+    },
+    {
+      "name": "snap.nephalem.client-id",
+      "type": "java.lang.String",
+      "description": "Description for snap.nephalem.client-id."
+    }
+  ] }
