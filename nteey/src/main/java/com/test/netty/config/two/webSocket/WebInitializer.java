@@ -13,6 +13,7 @@ import io.netty.handler.codec.http.websocketx.*;
 import io.netty.handler.stream.ChunkedWriteHandler;
 import io.netty.util.CharsetUtil;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.ComponentScan;
@@ -30,7 +31,7 @@ import static io.netty.handler.codec.http.HttpHeaderUtil.isKeepAlive;
  * @ Modified By：
  */
 @Component
-public class WebInitializer extends ChannelInitializer<SocketChannel> {
+public class WebInitializer extends ChannelInitializer<SocketChannel> implements InitializingBean {
     @Value("${netty.server-socket.url}")
     private String socketUri;
 
@@ -55,5 +56,10 @@ public class WebInitializer extends ChannelInitializer<SocketChannel> {
         channel.pipeline().addLast("websocket-server", new WebSocketServerProtocolHandler(DefaultConstants.SOCKET_IP));
         // WebSocket RFC 定义了 6 种帧，TextWebSocketFrame 是我们唯一真正需要处理的帧类型
         channel.pipeline().addLast("text-frame", textWebSocketFrameHandler);
+    }
+
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        System.out.println(socketUri);
     }
 }
