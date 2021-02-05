@@ -19,6 +19,8 @@ import java.util.Date;
 import static io.netty.handler.codec.http.HttpHeaderUtil.isKeepAlive;
 
 @Slf4j
+@Component
+@ChannelHandler.Sharable
 public class NioWebSocketHandler extends ChannelHandlerAdapter {
 
     private final Logger logger=Logger.getLogger(this.getClass());
